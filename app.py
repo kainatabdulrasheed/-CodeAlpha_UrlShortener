@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random, string
+from flask import redirect, abort
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
@@ -30,6 +31,14 @@ def shorten_url():
     db.session.commit()
 
     return jsonify({'short_url': f'http://localhost:5000/{code}'})
+
+@app.route('/<code>')
+def redirect_url(code):
+    url_entry = URL.query.filter_by(short_code=code).first()
+    if url_entry:
+        return redirect(url_entry.original_url)
+    else:
+        abort(404)
 
 if __name__ == '__main__':
     app.run(debug=True)
