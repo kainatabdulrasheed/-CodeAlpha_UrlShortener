@@ -64,4 +64,4 @@ Response:
 Visit the short URL in a browser (e.g. `http://localhost:5000/aB3xZ9`) — you'll be redirected to the original long URL.
 
 ## Author
-Kiwi — CodeAlpha Backend Development Intern
+Kainat Rasheed — CodeAlpha Backend Development Intern
